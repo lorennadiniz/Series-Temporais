@@ -1,6 +1,14 @@
 ---
 title: "Análise da Taxa de Variação Real do Consumo dos Lares"
-format: html
+format:
+  html:
+    toc: true
+    toc-title: "Sumário"
+    toc-depth: 3
+    number-sections: true
+    theme: cosmo
+    smooth-scroll: true
+    css: styles.css
 editor: visual
 author: Lorenna Diniz Dantas
 ---
@@ -9,13 +17,28 @@ author: Lorenna Diniz Dantas
 
 O consumo nos lares é um indicador central para a análise do desempenho do varejo alimentar e do comportamento dos consumidores frente ao cenário macroeconômico. Sua dinâmica reflete os efeitos da inflação, da renda disponível, do mercado de trabalho e das expectativas econômicas, além de padrões sazonais que influenciam as decisões de compra ao longo do ano.
 
-Este relatório analisa a Taxa de Variação Real do Consumo dos Lares por meio de modelos de suavização exponencial, aplicados a uma série deflacionada pelo Índice de Preços ao Consumidor Ampliado (IPCA), de modo a capturar tendências, movimentos de curto prazo e efeitos sazonais. A base contempla todos os formatos do varejo supermercadista, que inclui lojas de vizinhança, minimercados, supermercados, hipermercados, atacarejo, superproximidade e e-commerce, oferecendo uma visão integrada do setor. A partir de janeiro de 2021, a série Consumo nos Lares substituiu o antigo Índice de Vendas, ampliando o escopo analítico e alinhando a leitura dos dados à realidade do consumo alimentar das famílias brasileiras.
+Este relatório analisa a Taxa de Variação Real do Consumo dos Lares (fonte: Associação Brasileira de Supermercados (Abras)) por meio de modelos de suavização exponencial, aplicados a uma série deflacionada pelo Índice de Preços ao Consumidor Ampliado (IPCA), de modo a capturar tendências, movimentos de curto prazo e efeitos sazonais. A base contempla todos os formatos do varejo supermercadista, que inclui lojas de vizinhança, minimercados, supermercados, hipermercados, atacarejo, superproximidade e e-commerce, oferecendo uma visão integrada do setor. A partir de janeiro de 2021, a série Consumo nos Lares substituiu o antigo Índice de Vendas, ampliando o escopo analítico e alinhando a leitura dos dados à realidade do consumo alimentar das famílias brasileiras.
+  
+  
+## Apresentação
 
+A Taxa de Variação Real do Consumo dos Lares é um indicador fundamental para a análise do comportamento econômico das famílias, pois reflete alterações no poder de compra e nas condições gerais da economia ao longo do tempo. Entretanto, por se tratar de uma série temporal sujeita a flutuações de curto prazo, choques econômicos e possíveis padrões sazonais, a interpretação direta de suas variações pode levar a conclusões imprecisas sobre sua tendência e dinâmica estrutural.
+
+Nesse contexto, torna-se necessário empregar métodos estatísticos capazes de captar o comportamento subjacente da série, reduzindo a influência de oscilações aleatórias e permitindo uma análise mais clara de suas tendências ao longo do tempo. Os Modelos de Suavização Exponencial apresentam-se como uma alternativa adequada para esse propósito, uma vez que atribuem maior peso às observações mais recentes, possibilitando uma representação mais fiel da evolução do consumo dos lares.
+
+Dessa forma, o problema central deste estudo consiste em investigar como os Modelos de Suavização Exponencial podem contribuir para a compreensão do comportamento da Taxa de Variação Real do Consumo dos Lares, identificando tendências, padrões e possíveis movimentos futuros da série analisada.
+  
+  
 ## Objetivo Geral
 
 Analisar a evolução recente do consumo das famílias e os impactos do cenário macroeconômico, apresentando a sensibilidade do varejo alimentar a choques econômicos e a importância da previsibilidade da demanda para o setor supermercadista.
-
+  
+  
 ## Métodos
+
+Apesar de sua relevância, a análise direta das variações mensais do consumo pode levar a interpretações equivocadas, uma vez que a série é influenciada por oscilações de curto prazo, choques pontuais e efeitos sazonais recorrentes. Essas flutuações dificultam a identificação de movimentos estruturais e a antecipação do comportamento futuro do consumo.
+
+Diante desse cenário, o problema central deste estudo consiste em compreender o comportamento da Taxa de Variação Real do Consumo dos Lares ao longo do tempo e identificar padrões que auxiliem na análise e previsão da série. Como solução metodológica, foram utilizadas técnicas de séries temporais, em especial os Modelos de Suavização Exponencial.
 
 Os modelos de suavização exponencial são amplamente utilizados na análise de séries temporais por sua capacidade de capturar padrões de nível, tendência e sazonalidade, atribuindo maior peso às observações mais recentes. Essa abordagem é particularmente útil em séries econômicas e de consumo, como é o caso desse estudo, nas quais o comportamento dos dados reflete ajustes contínuos às condições do ambiente macroeconômico.
 
@@ -25,13 +48,7 @@ Para séries que, além da tendência, apresentam padrões sazonais recorrentes,
 
 As análises estatísticas e a modelagem da série temporal foram realizadas com o auxílio do software R, ambiente amplamente utilizado para análise de dados e aplicações estatísticas. Por meio do R, foi possível organizar e tratar os dados, realizar a análise exploratória da série e ajustar os Modelos de Suavização Exponencial empregados no estudo. A utilização desse software permitiu a aplicação de métodos consolidados da estatística, bem como a geração de gráficos e resultados que contribuíram para uma melhor compreensão do comportamento da Taxa de Variação Real do Consumo dos Lares ao longo do período analisado.
 
-## Apresentação
-
-A Taxa de Variação Real do Consumo dos Lares é um indicador fundamental para a análise do comportamento econômico das famílias, pois reflete alterações no poder de compra e nas condições gerais da economia ao longo do tempo. Entretanto, por se tratar de uma série temporal sujeita a flutuações de curto prazo, choques econômicos e possíveis padrões sazonais, a interpretação direta de suas variações pode levar a conclusões imprecisas sobre sua tendência e dinâmica estrutural.
-
-Nesse contexto, torna-se necessário empregar métodos estatísticos capazes de captar o comportamento subjacente da série, reduzindo a influência de oscilações aleatórias e permitindo uma análise mais clara de suas tendências ao longo do tempo. Os Modelos de Suavização Exponencial apresentam-se como uma alternativa adequada para esse propósito, uma vez que atribuem maior peso às observações mais recentes, possibilitando uma representação mais fiel da evolução do consumo dos lares.
-
-Dessa forma, o problema central deste estudo consiste em investigar como os Modelos de Suavização Exponencial podem contribuir para a compreensão do comportamento da Taxa de Variação Real do Consumo dos Lares, identificando tendências, padrões e possíveis movimentos futuros da série analisada.
+As análises estatísticas e os procedimentos de modelagem apresentados neste estudo foram desenvolvidos utilizando a linguagem **R**, amplamente empregada em análise de séries temporais. O uso do R possibilitou a realização de análises descritivas, visualizações gráficas, decomposição das séries e aplicação de modelos de suavização exponencial de forma eficiente e alinhada às boas práticas analíticas.
 
 ## Análises
 
@@ -65,16 +82,23 @@ dados <- read_delim(
   delim = ";",
   locale = locale(decimal_mark = ",")
 )
+
+#Carregando a base de dados do IPCA e separando as colunas pelo delimitador ";"
+dados.2 <- read_delim(
+  "https://raw.githubusercontent.com/lorennadiniz/Series-Temporais/refs/heads/main/ipeadata-IPCA(alimentos%20e%20bebidas%2021-25).csv",
+  delim = ";",
+  locale = locale(decimal_mark = ",")
+)
 ```
 
 ```{r}
 #| echo: false
 #| message: FALSE
 #| warning: FALSE
+
 #Alterando o nome da segunda coluna da tabela:
 colnames(dados)[2] <- "consumo"
 
-#Visualizando a variação mensal do consumo:
 # Criando a série temporal
 serie_ts <- ts(
   dados$consumo,
@@ -115,9 +139,9 @@ estatisticas_mensais <- dados %>%
 estatisticas_mensais
 ```
 
-A análise descritiva mensal da Taxa de Variação Real do Consumo dos Lares confirma a existência de sazonalidade bem definida ao longo do ano, com padrões consistentes entre os meses. O mês de janeiro apresenta, em média, a maior retração do consumo, com variação média de aproximadamente –17,6%, além de elevada dispersão (desvio-padrão de 4,42), caracterizando-o como o principal vale sazonal da série. Em fevereiro, observa-se uma desaceleração da queda, com média em torno de –3,1%, indicando o início da recuperação do consumo. O primeiro pico positivo ocorre em março, com crescimento médio de 8,16%, sinalizando uma retomada mais intensa após o período de ajuste do início do ano.
+A análise descritiva mensal da Taxa de Variação Real do Consumo dos Lares mostra que o mês de janeiro apresenta, em média, a maior retração do consumo, com variação média de aproximadamente –17,6%, além de elevada dispersão (desvio-padrão de 4,42), caracterizando-o como o principal vale sazonal da série. Em fevereiro, observa-se uma desaceleração da queda, com média em torno de –3,1%, indicando o início da recuperação do consumo. O primeiro pico positivo ocorre em março, com crescimento médio de 8,16%, sinalizando uma retomada mais intensa após o período de ajuste do início do ano.
 
-Nos meses intermediários, entre abril e setembro, o consumo apresenta oscilações moderadas e valores próximos de zero, com médias variando entre –1,04% e 4,18%, refletindo um período de relativa estabilidade. A partir de outubro, verifica-se uma nova aceleração do consumo, com médias positivas em outubro (4,22%) e novembro (3,72%), culminando no principal pico sazonal em dezembro, que registra a maior variação média do ano, cerca de 16,83%, acompanhada de elevada variabilidade (desvio-padrão de 3,65). A proximidade entre médias e medianas ao longo de todos os meses sugere que esses comportamentos não são influenciados por valores extremos, mas representam um padrão estrutural do consumo das famílias, reforçando a adequação do uso de Modelos de Suavização Exponencial com componente sazonal para a análise e previsão da série.
+Nos meses intermediários, entre abril e setembro, o consumo apresenta oscilações moderadas e valores próximos de zero, com médias variando entre –1,04% e 4,18%, refletindo um período de relativa estabilidade. A partir de outubro, verifica-se uma nova aceleração do consumo, com médias positivas em outubro (4,22%) e novembro (3,72%), culminando no principal pico sazonal em dezembro, que registra a maior variação média do ano, cerca de 16,83%, acompanhada de elevada variabilidade (desvio-padrão de 3,65). A proximidade entre médias e medianas ao longo de todos os meses sugere que esses comportamentos não são influenciados por valores extremos, mas representam um padrão estrutural do consumo das famílias, reforçando a adequação do uso de Modelos de Suavização Exponencial com componente sazonal para a análise e previsão da série. Segue abaixo o gráfico da Variação da Taxa de Consumo nos Lares.
 
 ```{r}
 #| echo: false
@@ -164,7 +188,83 @@ axis(
 par(mar = c(5, 5, 4, 2))  
 ```
 
-Diante desse comportamento irregular e sazonal, a análise direta dos valores mensais pode gerar interpretações equivocadas sobre a real evolução do consumo. Oscilações pontuais podem refletir apenas movimentos típicos do calendário ou ajustes temporários, e não mudanças permanentes no padrão de consumo das famílias. Por isso, torna-se importante utilizar uma abordagem que permita compreender melhor o comportamento da série ao longo do tempo, distinguindo variações sazonais de movimentos mais persistentes do consumo.
+Diante desse comportamento irregular e sazonal, a análise direta dos valores mensais pode gerar interpretações equivocadas sobre a real evolução do consumo. Oscilações pontuais podem refletir apenas movimentos típicos do calendário ou ajustes temporários, e não mudanças permanentes no padrão de consumo das famílias.
+
+Mesmo observando a sazonalidade nos dados, é importante analisar a influência de fatores econômicos, como o Índice Nacional de Preços ao Consumidor Amplo (IPCA), especificamente para alimentos e bebidas, que é o tema central desse estudo.
+
+```{r}
+#| echo: false
+#| message: FALSE
+#| warning: FALSE
+#| fig.width: 10
+#| fig.height: 6
+#| fig.align: "center"
+
+# Criando série temporal da 3ª coluna da nova base
+serie_ts_2 <- ts(
+  dados.2[[3]],
+  start = start(serie_ts),
+  frequency = frequency(serie_ts)
+)
+
+# Gráfico da primeira série
+plot(
+  serie_ts,
+  type = "o",
+  col = "darkorange",
+  lwd = 2,
+  pch = 16,
+  ylab = "Variação da Taxa de Consumo (%)",
+  xlab = "",
+  xaxt = "n"
+)
+
+# Adicionando a segunda série
+lines(
+  serie_ts_2,
+  type = "o",
+  col = "steelblue",
+  lwd = 2,
+  pch = 17
+)
+
+grid()
+
+# Eixo X
+tempo <- time(serie_ts)
+
+labels_meses <- format(
+  seq(
+    from = as.Date("2021-01-01"),
+    by = "month",
+    length.out = length(serie_ts)
+  ),
+  "%Y-%m"
+)
+
+axis(
+  side = 1,
+  at = tempo,
+  labels = labels_meses,
+  las = 2,
+  cex.axis = 0.7
+)
+
+# Legenda
+legend(
+  "topright",
+  legend = c("Consumo", "IPCA"),
+  col = c("darkorange", "steelblue"),
+  lwd = 2,
+  pch = c(16, 17),
+  bty = "n"
+)
+
+par(mar = c(5, 5, 4, 2))
+
+```
+
+O gráfico evidencia comportamentos bastante distintos entre a Taxa de Variação Real do Consumo dos Lares (linha laranja) e o IPCA (linha azul). Enquanto o consumo apresenta alta volatilidade, com amplitudes expressivas, picos positivos superiores a 20% e quedas acentuadas abaixo de –20%, o IPCA oscila de forma muito mais estável, concentrando-se em torno de valores próximos de zero, com variações mensais relativamente pequenas.Isso sugere que o IPCA pode ser utilizado como uma variável explicativa complementar, mas não suficiente, para explicar a dinâmica do consumo no curto prazo. Assim, para fins de previsão e tomada de decisão, a modelagem da Taxa de Consumo deve priorizar sua própria estrutura temporal.
 
 ```{r}
 #| echo: false
@@ -203,7 +303,7 @@ gg_season(
   )
 ```
 
-O gráfico evidencia a presença de sazonalidade mensal bem definida na Taxa de Consumo, com valores negativos recorrentes em janeiro, recuperação a partir de fevereiro, picos em março e um crescimento mais acentuado no último trimestre, especialmente em dezembro. Ao longo dos meses intermediários do ano, observa-se relativa estabilidade, com oscilações de menor magnitude. Quanto à tendência, não se identifica um movimento crescente ou decrescente consistente no período analisado, indicando que o comportamento da série é predominantemente influenciado pela sazonalidade. Esse padrão justifica a utilização de Modelos de Suavização Exponencial com componente sazonal para a análise da série.
+O gráfico acima evidencia a presença de sazonalidade mensal bem definida na Taxa de Consumo em todos os anos analisados, com valores negativos recorrentes em janeiro, recuperação a partir de fevereiro, picos em março e um crescimento mais acentuado no último trimestre, especialmente em dezembro. Quanto à tendência, não se identifica um movimento crescente ou decrescente consistente no período analisado, indicando que o comportamento da série é predominantemente influenciado pela sazonalidade.
 
 ```{r}
 #| echo: false
@@ -224,7 +324,7 @@ serie_tbl %>%
 
 Os subgráficos sazonais permitem uma leitura mais detalhada do comportamento do consumo ao longo do ano, ao comparar diretamente os mesmos meses em anos distintos. Observa-se que janeiro concentra sistematicamente os menores valores da série, evidenciando um ajuste negativo recorrente no início do ano, enquanto dezembro se destaca como o mês de maior expansão do consumo. Em meses como março, julho e outubro, predominam variações positivas, embora com intensidades distintas entre os anos, ao passo que os meses intermediários apresentam flutuações mais contidas e próximas da média geral. A consistência desses padrões entre os subgráficos reforça que as oscilações observadas não são aleatórias, mas refletem um comportamento sazonal estruturado, o que respalda a adoção de modelos que incorporem explicitamente a sazonalidade para descrever e prever a dinâmica do consumo das famílias.
 
-A decomposição aditiva é indicada quando a **amplitude da sazonalidade permanece aproximadamente constante**, o que já foi observado na sua série.
+A decomposição aditiva é indicada quando a amplitude da sazonalidade permanece aproximadamente constante, o que já foi observado na série.
 
 ```{r}
 #| echo: false
@@ -246,6 +346,8 @@ serie_tbl %>%
   )
 ```
 
+Do ponto de vista estatístico, a decomposição clássica aditiva da Taxa de Variação Real do Consumo dos Lares evidencia de forma clara a estrutura subjacente da série temporal, ao separar o comportamento observado nos componentes tendência, sazonalidade e ruído (componente aleatório). A tendência mostra movimentos de médio prazo, com crescimento inicial, desaceleração em 2023 e recuperação gradual a partir de 2024, sem um comportamento monotônico persistente ao longo de todo o período. A sazonalidade é estável e recorrente. Por fim, o componente aleatório (residual) concentra variações de curta duração, sem padrão sistemático identificável, oscilando em torno de zero. A ausência de estrutura visível nesse componente sugere que a maior parte da variabilidade da série foi adequadamente capturada pelos componentes de tendência e sazonalidade. Em termos estatísticos, isso indica um bom ajuste da decomposição aditiva e reforça que o comportamento do consumo é predominantemente explicado por fatores sazonais.
+
 ```{r}
 #| echo: false
 #| message: false
@@ -266,52 +368,53 @@ serie_tbl %>%
   )
 ```
 
-A decomposição clássica, tanto na forma aditiva quanto multiplicativa, permite separar de maneira clara os diferentes componentes que explicam o comportamento da Taxa de Variação Real do Consumo dos Lares. Em ambos os modelos, o componente sazonal mostra-se estável ao longo do tempo, repetindo um padrão mensal consistente, o que indica que a sazonalidade é um fator estrutural da série e não sofre alterações relevantes de intensidade entre os anos. O componente de tendência evidencia movimentos de médio prazo: observa-se uma fase de crescimento inicial, seguida por um período de desaceleração e posterior recuperação, sem indicar, contudo, uma tendência monotônica persistente no horizonte analisado. Já o componente aleatório concentra flutuações de curta duração, sem padrão sistemático, sugerindo que choques pontuais afetam o consumo, mas não comprometem a estrutura geral da série. A semelhança entre os resultados das decomposições aditiva e multiplicativa indica que a magnitude das variações sazonais não depende fortemente do nível da série, reforçando a adequação de modelos que incorporem sazonalidade bem definida para a análise e a previsão do consumo.
+Analisando a decomposição clássica multiplicativa, vemos que a tendência revela movimentos de médio prazo semelhantes aos observados na decomposição aditiva, o componente sazonal apresenta padrão mensal recorrente e estável, e o componente aleatório concentra oscilações irregulares em torno da unidade, sem estrutura sistemática. A similaridade entre os resultados obtidos nas decomposições multiplicativa e aditiva sugere que, embora a sazonalidade seja relevante, sua intensidade não depende fortemente do nível da série.
 
-Considerando as características identificadas nas análises anteriores — presença de sazonalidade mensal bem definida, ausência de tendência monotônica persistente e variabilidade relativamente constante ao longo do tempo — procedeu-se à construção de modelos de previsão baseados em técnicas clássicas de séries temporais. Foram avaliados modelos de Suavização Exponencial e modelos ARIMA sazonais, amplamente utilizados para séries econômicas com esse perfil.
+Em séries onde a sazonalidade é proporcional ao nível, ou seja, quanto maior o consumo, maior a oscilação sazonal, espera-se que a decomposição multiplicativa apresente resultados substancialmente diferentes da aditiva. No entanto, neste caso, a proximidade entre os componentes sazonais obtidos nos dois modelos sugere que as variações sazonais não se intensificam de forma significativa quando o consumo aumenta, nem se reduzem proporcionalmente quando ele diminui. Assim, a sazonalidade atua como um efeito estrutural relativamente estável, reforçando que modelos aditivos e métodos de suavização exponencial com sazonalidade aditiva, são adequados para representar e prever o comportamento da série.
 
-Inicialmente, a série foi organizada em formato tsibble, permitindo a aplicação direta dos métodos do pacote fpp3. Em seguida, foram ajustados diferentes modelos candidatos, a fim de comparar seu desempenho preditivo.
+Considerando as características identificadas nas análises anteriores, foram avaliados modelos de Suavização Exponencial.
+
+Para avaliar o desempenho dos modelos de previsão e identificar a abordagem mais adequada, a série temporal foi particionada em dois subconjuntos: amostra de treinamento e amostra de teste. A amostra de treinamento compreende as observações até dezembro de 2024, enquanto a amostra de teste é formada pelos 12 meses subsequentes, utilizados exclusivamente para validação preditiva dos modelos ajustados.
 
 ```{r}
 #| echo: false
 #| message: false
 #| warning: false
 
-# Divisão da série em treino e teste (últimos 12 meses para validação)
-treino <- serie_tbl %>% filter(mes <= yearmonth("2024 Dec"))
-teste  <- serie_tbl %>% filter(mes >  yearmonth("2024 Dec"))
+# Divisão da série em treino e teste (últimos 12 meses)
+treino <- serie_tbl %>%
+  filter(mes <= yearmonth("2024 Dec"))
 
-# Ajuste dos modelos
+teste <- serie_tbl %>%
+  filter(mes > yearmonth("2024 Dec"))
+
+# Ajuste dos modelos de Suavização Exponencial
 modelos <- treino %>%
   model(
-    ETS_Aditivo = ETS(consumo),
-    ARIMA = ARIMA(consumo)
+    ETS_Aditivo       = ETS(consumo ~ error("A") + trend("A") + season("A")),
+    ETS_Multiplicativo = ETS(consumo ~ error("M") + trend("A") + season("M"))
   )
 
 modelos
 ```
 
-Para avaliar o desempenho dos modelos, foram calculadas medidas de erro de previsão sobre o conjunto de teste, incluindo o Erro Médio Absoluto (MAE), a Raiz do Erro Quadrático Médio (RMSE) e o Erro Percentual Absoluto Médio (MAPE).
-
 ```{r}
 #| echo: false
 #| message: false
 #| warning: false
 
-# Previsões para o período de teste
+# Previsões para o período de teste (12 meses)
 previsoes <- modelos %>%
   forecast(h = 12)
 
-# Avaliação da acurácia
+# Avaliação da acurácia dos modelos
 avaliacao <- previsoes %>%
   accuracy(teste)
 
 avaliacao
 ```
 
-Os resultados indicam que o modelo de Suavização Exponencial (ETS) apresentou menores valores de erro em comparação ao modelo ARIMA, especialmente nas métricas RMSE e MAPE. Esse desempenho superior está associado à capacidade do modelo ETS de capturar de forma eficiente a estrutura sazonal estável da série, sem impor restrições excessivas quanto à dinâmica autorregressiva dos dados.
-
-Dessa forma, o modelo ETS foi selecionado como o mais adequado para a previsão da Taxa de Variação Real do Consumo dos Lares. Com base nesse modelo, foram geradas previsões para os 12 meses subsequentes ao período analisado.
+A comparação entre os modelos ETS aditivo e ETS multiplicativo evidencia diferenças claras de desempenho preditivo. O modelo ETS aditivo (ETS(A,A,A)) apresenta erros mais controlados, com ME de 3,03, indicando leve superestimação, e valores moderados de RMSE (4,11) e MAE (3,17), o que sugere um bom ajuste à dinâmica da série, apesar dos elevados erros percentuais (MAPE de 145,33%), explicáveis pela presença de valores próximos de zero e oscilações acentuadas. Em contraste, o ETS multiplicativo (ETS(M,A,M)) demonstra desempenho substancialmente inferior, com forte viés de subestimação (ME de −64,28), erros absolutos e quadráticos extremamente elevados (RMSE de 168,01 e MAE de 64,28) e um MAPE de 902,17%, indicando incapacidade de capturar adequadamente o comportamento da série. Esses resultados sugerem que a sazonalidade não varia proporcionalmente ao nível da série, violando o pressuposto central do modelo multiplicativo, o que reforça a superioridade estatística do modelo ETS aditivo para fins de previsão neste estudo.
 
 ```{r}
 #| echo: false
@@ -321,17 +424,23 @@ Dessa forma, o modelo ETS foi selecionado como o mais adequado para a previsão 
 #| fig.height: 6
 #| fig.align: center
 
-# Previsão final com o melhor modelo
+# Previsão final com o melhor modelo (ETS Aditivo)
 previsao_final <- treino %>%
-  model(ETS(consumo)) %>%
+  model(ETS(consumo)) %>%   # ETS aditivo por padrão
   forecast(h = 12)
 
 autoplot(previsao_final, serie_tbl) +
   labs(
-    title = "Previsão da Taxa de Variação Real do Consumo dos Lares",
+    title = "Previsão da Taxa de Variação Real do Consumo dos Lares (ETS Aditivo)",
     y = "Variação (%)",
     x = "Tempo"
   )
 ```
 
-De modo geral, as previsões mantêm o padrão sazonal identificado ao longo da série histórica, com retrações no início do ano e expansão no último trimestre, refletindo a persistência do comportamento estrutural do consumo das famílias. A escolha do modelo de Suavização Exponencial mostra-se, portanto, consistente tanto do ponto de vista empírico — dado seu melhor desempenho preditivo — quanto teórico, uma vez que incorpora explicitamente a sazonalidade observada e se ajusta adequadamente à ausência de uma tendência de longo prazo dominante.
+O gráfico de previsão obtido pelo modelo aditivo indica que a série apresenta elevada volatilidade, com oscilações abruptas entre valores negativos e positivos ao longo do período observado. A linha preta representa os valores reais observados da taxa de variação do consumo, enquanto a azul indica o valor médio previsto pelo modelo. A faixa azul escura indica onde o modelo espera que o valor real caia com 80% de probabilidade, e a faixa mais clara representa o intervalo de maior incerteza.
+
+Os intervalos de confiança de 80% e 95% revelam que a incerteza é relativamente menor no curto prazo, mas aumenta progressivamente à medida que o horizonte de previsão se estende, refletindo a variabilidade histórica da série e a possibilidade de novos choques. Assim, embora o modelo capture adequadamente a dinâmica de curto prazo e a tendência média de recuperação, as previsões de médio e longo prazo devem ser interpretadas com cautela devido à ampliação da variância do erro.
+
+## Conclusão
+
+Os resultados obtidos estão diretamente alinhados ao tema do estudo, que busca compreender e antecipar o comportamento da Taxa de Variação Real do Consumo dos Lares como um indicador relevante da dinâmica econômica. A identificação de forte sazonalidade anual e elevada volatilidade mensal evidencia que o consumo das famílias responde de forma sensível a fatores recorrentes do calendário econômico, como períodos de maior gasto no fim do ano e retrações no início, além de choques conjunturais de curto prazo. Nesse contexto, a decomposição da série e o melhor desempenho do modelo ETS aditivo demonstram que técnicas de séries temporais são adequadas para capturar esses padrões e gerar previsões mais consistentes, contribuindo para o planejamento econômico e para a tomada de decisão estratégica em setores dependentes do nível de consumo.
