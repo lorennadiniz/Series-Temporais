@@ -1,0 +1,705 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.8.25">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Lorenna Diniz Dantas">
+
+<title>Análise da Taxa de Variação Real do Consumo dos Lares</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="Projeto_files/libs/clipboard/clipboard.min.js"></script>
+<script src="Projeto_files/libs/quarto-html/quarto.js" type="module"></script>
+<script src="Projeto_files/libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="Projeto_files/libs/quarto-html/axe/axe-check.js" type="module"></script>
+<script src="Projeto_files/libs/quarto-html/popper.min.js"></script>
+<script src="Projeto_files/libs/quarto-html/tippy.umd.min.js"></script>
+<script src="Projeto_files/libs/quarto-html/anchor.min.js"></script>
+<link href="Projeto_files/libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="Projeto_files/libs/quarto-html/quarto-syntax-highlighting-7b89279ff1a6dce999919e0e67d4d9ec.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="Projeto_files/libs/bootstrap/bootstrap.min.js"></script>
+<link href="Projeto_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="Projeto_files/libs/bootstrap/bootstrap-4d7f0bce1131f3e5f9547cd857cfbfc8.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<style>html{ scroll-behavior: smooth; }</style>
+
+
+<link rel="stylesheet" href="styles.css">
+</head>
+
+<body class="quarto-light">
+
+<div id="quarto-content" class="page-columns page-rows-contents page-layout-article">
+<div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+  <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Sumário</h2>
+   
+  <ul>
+  <li><a href="#introdução" id="toc-introdução" class="nav-link active" data-scroll-target="#introdução"><span class="header-section-number">1</span> Introdução</a></li>
+  <li><a href="#apresentação" id="toc-apresentação" class="nav-link" data-scroll-target="#apresentação"><span class="header-section-number">2</span> Apresentação</a></li>
+  <li><a href="#objetivo-geral" id="toc-objetivo-geral" class="nav-link" data-scroll-target="#objetivo-geral"><span class="header-section-number">3</span> Objetivo Geral</a></li>
+  <li><a href="#métodos" id="toc-métodos" class="nav-link" data-scroll-target="#métodos"><span class="header-section-number">4</span> Métodos</a></li>
+  <li><a href="#análises" id="toc-análises" class="nav-link" data-scroll-target="#análises"><span class="header-section-number">5</span> Análises</a></li>
+  <li><a href="#conclusão" id="toc-conclusão" class="nav-link" data-scroll-target="#conclusão"><span class="header-section-number">6</span> Conclusão</a></li>
+  </ul>
+</nav>
+</div>
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Análise da Taxa de Variação Real do Consumo dos Lares</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Lorenna Diniz Dantas </p>
+          </div>
+  </div>
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="introdução" class="level2" data-number="1">
+<h2 data-number="1" class="anchored" data-anchor-id="introdução"><span class="header-section-number">1</span> Introdução</h2>
+<p>O consumo nos lares é um indicador central para a análise do desempenho do varejo alimentar e do comportamento dos consumidores frente ao cenário macroeconômico. Sua dinâmica reflete os efeitos da inflação, da renda disponível, do mercado de trabalho e das expectativas econômicas, além de padrões sazonais que influenciam as decisões de compra ao longo do ano.</p>
+<p>Este relatório analisa a Taxa de Variação Real do Consumo dos Lares (fonte: Associação Brasileira de Supermercados (Abras)) por meio de modelos de suavização exponencial, aplicados a uma série deflacionada pelo Índice de Preços ao Consumidor Ampliado (IPCA), de modo a capturar tendências, movimentos de curto prazo e efeitos sazonais. A base contempla todos os formatos do varejo supermercadista, que inclui lojas de vizinhança, minimercados, supermercados, hipermercados, atacarejo, superproximidade e e-commerce, oferecendo uma visão integrada do setor. A partir de janeiro de 2021, a série Consumo nos Lares substituiu o antigo Índice de Vendas, ampliando o escopo analítico e alinhando a leitura dos dados à realidade do consumo alimentar das famílias brasileiras.</p>
+</section>
+<section id="apresentação" class="level2" data-number="2">
+<h2 data-number="2" class="anchored" data-anchor-id="apresentação"><span class="header-section-number">2</span> Apresentação</h2>
+<p>A Taxa de Variação Real do Consumo dos Lares é um indicador fundamental para a análise do comportamento econômico das famílias, pois reflete alterações no poder de compra e nas condições gerais da economia ao longo do tempo. Entretanto, por se tratar de uma série temporal sujeita a flutuações de curto prazo, choques econômicos e possíveis padrões sazonais, a interpretação direta de suas variações pode levar a conclusões imprecisas sobre sua tendência e dinâmica estrutural.</p>
+<p>Nesse contexto, torna-se necessário empregar métodos estatísticos capazes de captar o comportamento subjacente da série, reduzindo a influência de oscilações aleatórias e permitindo uma análise mais clara de suas tendências ao longo do tempo. Os Modelos de Suavização Exponencial apresentam-se como uma alternativa adequada para esse propósito, uma vez que atribuem maior peso às observações mais recentes, possibilitando uma representação mais fiel da evolução do consumo dos lares.</p>
+<p>Dessa forma, o problema central deste estudo consiste em investigar como os Modelos de Suavização Exponencial podem contribuir para a compreensão do comportamento da Taxa de Variação Real do Consumo dos Lares, identificando tendências, padrões e possíveis movimentos futuros da série analisada.</p>
+</section>
+<section id="objetivo-geral" class="level2" data-number="3">
+<h2 data-number="3" class="anchored" data-anchor-id="objetivo-geral"><span class="header-section-number">3</span> Objetivo Geral</h2>
+<p>Analisar a evolução recente do consumo das famílias e os impactos do cenário macroeconômico, apresentando a sensibilidade do varejo alimentar a choques econômicos e a importância da previsibilidade da demanda para o setor supermercadista.</p>
+</section>
+<section id="métodos" class="level2" data-number="4">
+<h2 data-number="4" class="anchored" data-anchor-id="métodos"><span class="header-section-number">4</span> Métodos</h2>
+<p>Apesar de sua relevância, a análise direta das variações mensais do consumo pode levar a interpretações equivocadas, uma vez que a série é influenciada por oscilações de curto prazo, choques pontuais e efeitos sazonais recorrentes. Essas flutuações dificultam a identificação de movimentos estruturais e a antecipação do comportamento futuro do consumo.</p>
+<p>Diante desse cenário, o problema central deste estudo consiste em compreender o comportamento da Taxa de Variação Real do Consumo dos Lares ao longo do tempo e identificar padrões que auxiliem na análise e previsão da série. Como solução metodológica, foram utilizadas técnicas de séries temporais, em especial os Modelos de Suavização Exponencial.</p>
+<p>Os modelos de suavização exponencial são amplamente utilizados na análise de séries temporais por sua capacidade de capturar padrões de nível, tendência e sazonalidade, atribuindo maior peso às observações mais recentes. Essa abordagem é particularmente útil em séries econômicas e de consumo, como é o caso desse estudo, nas quais o comportamento dos dados reflete ajustes contínuos às condições do ambiente macroeconômico.</p>
+<p>O modelo de Suavização Exponencial Simples (SES) é a forma mais básica dessa metodologia e é indicado para séries que apresentam apenas um nível relativamente estável, sem tendência ou sazonalidade. Quando a série exibe uma tendência ao longo do tempo, utiliza-se o modelo de Holt, que incorpora um componente adicional para representar a evolução do crescimento ou da queda da série.</p>
+<p>Para séries que, além da tendência, apresentam padrões sazonais recorrentes, como no caso de dados mensais de consumo, o modelo mais adequado é o modelo de Holt-Winters, que estende a formulação de Holt ao incluir um componente sazonal. Esse modelo pode ser especificado nas formas aditiva ou multiplicativa, dependendo da forma como a sazonalidade se manifesta na série, sendo a versão aditiva indicada quando a amplitude das variações sazonais se mantém aproximadamente constante ao longo do tempo.</p>
+<p>As análises estatísticas e a modelagem da série temporal foram realizadas com o auxílio do software R, ambiente amplamente utilizado para análise de dados e aplicações estatísticas. Por meio do R, foi possível organizar e tratar os dados, realizar a análise exploratória da série e ajustar os Modelos de Suavização Exponencial empregados no estudo. A utilização desse software permitiu a aplicação de métodos consolidados da estatística, bem como a geração de gráficos e resultados que contribuíram para uma melhor compreensão do comportamento da Taxa de Variação Real do Consumo dos Lares ao longo do período analisado.</p>
+<p>As análises estatísticas e os procedimentos de modelagem apresentados neste estudo foram desenvolvidos utilizando a linguagem <strong>R</strong>, amplamente empregada em análise de séries temporais. O uso do R possibilitou a realização de análises descritivas, visualizações gráficas, decomposição das séries e aplicação de modelos de suavização exponencial de forma eficiente e alinhada às boas práticas analíticas.</p>
+</section>
+<section id="análises" class="level2" data-number="5">
+<h2 data-number="5" class="anchored" data-anchor-id="análises"><span class="header-section-number">5</span> Análises</h2>
+<p>Os dados analisados neste estudo correspondem a observações mensais, compreendendo o período de janeiro de 2021 a 2025, constituindo uma série temporal contínua, adequada para a identificação de padrões sazonais, avaliação de movimentos de médio prazo e construção de modelos de previsão.</p>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code>        Jan    Feb    Mar    Apr    May    Jun    Jul    Aug    Sep    Oct
+2021 -18.45  -6.75  11.11  -4.82   1.98  -5.12   4.84  -2.33  -0.49   4.95
+2022 -21.22  -0.90   6.58   4.20  -3.47   0.10   7.75   6.12   0.39   6.27
+2023 -14.81  -2.00   7.29   1.47  -0.95   0.55   4.24   0.80   0.80   2.89
+2024 -22.01  -1.54   8.85  -7.29   6.52  -1.80   1.65   1.00  -1.30   3.49
+2025 -11.51  -4.25   6.96   1.25   2.04   1.07   2.41   2.08  -0.94   3.52
+        Nov    Dec
+2021   1.97  22.47
+2022   3.80  15.19
+2023   1.83  18.00
+2024   7.00  12.81
+2025   3.98  15.69</code></pre>
+</div>
+</div>
+<p>Ao observar os dados, é possível notar que em todos os anos o período de baixa ocorreu no mês de Janeiro e o de alta no mês de Dezembro, enquanto os demais meses mostram oscilações similares. Essas informações ficam mais evidentes ao fazermos a análise descritiva desses dados.</p>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 12 × 5
+   mes_num mes_nome   Média Mediana Desvio_Padrão
+     &lt;dbl&gt; &lt;ord&gt;      &lt;dbl&gt;   &lt;dbl&gt;         &lt;dbl&gt;
+ 1       1 jan      -17.6    -18.4          4.42 
+ 2       2 fev       -3.09    -2            2.40 
+ 3       3 mar        8.16     7.29         1.86 
+ 4       4 abr       -1.04     1.25         4.81 
+ 5       5 mai        1.22     1.98         3.74 
+ 6       6 jun       -1.04     0.1          2.53 
+ 7       7 jul        4.18     4.24         2.38 
+ 8       8 ago        1.53     1            3.04 
+ 9       9 set       -0.308   -0.49         0.885
+10      10 out        4.22     3.52         1.37 
+11      11 nov        3.72     3.8          2.09 
+12      12 dez       16.8     15.7          3.65 </code></pre>
+</div>
+</div>
+<p>A análise descritiva mensal da Taxa de Variação Real do Consumo dos Lares mostra que o mês de janeiro apresenta, em média, a maior retração do consumo, com variação média de aproximadamente –17,6%, além de elevada dispersão (desvio-padrão de 4,42), caracterizando-o como o principal vale sazonal da série. Em fevereiro, observa-se uma desaceleração da queda, com média em torno de –3,1%, indicando o início da recuperação do consumo. O primeiro pico positivo ocorre em março, com crescimento médio de 8,16%, sinalizando uma retomada mais intensa após o período de ajuste do início do ano.</p>
+<p>Nos meses intermediários, entre abril e setembro, o consumo apresenta oscilações moderadas e valores próximos de zero, com médias variando entre –1,04% e 4,18%, refletindo um período de relativa estabilidade. A partir de outubro, verifica-se uma nova aceleração do consumo, com médias positivas em outubro (4,22%) e novembro (3,72%), culminando no principal pico sazonal em dezembro, que registra a maior variação média do ano, cerca de 16,83%, acompanhada de elevada variabilidade (desvio-padrão de 3,65). A proximidade entre médias e medianas ao longo de todos os meses sugere que esses comportamentos não são influenciados por valores extremos, mas representam um padrão estrutural do consumo das famílias, reforçando a adequação do uso de Modelos de Suavização Exponencial com componente sazonal para a análise e previsão da série. Segue abaixo o gráfico da Variação da Taxa de Consumo nos Lares.</p>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="Projeto_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="960"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Diante desse comportamento irregular e sazonal, a análise direta dos valores mensais pode gerar interpretações equivocadas sobre a real evolução do consumo. Oscilações pontuais podem refletir apenas movimentos típicos do calendário ou ajustes temporários, e não mudanças permanentes no padrão de consumo das famílias.</p>
+<p>Mesmo observando a sazonalidade nos dados, é importante analisar a influência de fatores econômicos, como o Índice Nacional de Preços ao Consumidor Amplo (IPCA), especificamente para alimentos e bebidas, que é o tema central desse estudo.</p>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="Projeto_files/figure-html/unnamed-chunk-6-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="960"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>O gráfico evidencia comportamentos bastante distintos entre a Taxa de Variação Real do Consumo dos Lares (linha laranja) e o IPCA (linha azul). Enquanto o consumo apresenta alta volatilidade, com amplitudes expressivas, picos positivos superiores a 20% e quedas acentuadas abaixo de –20%, o IPCA oscila de forma muito mais estável, concentrando-se em torno de valores próximos de zero, com variações mensais relativamente pequenas.Isso sugere que o IPCA pode ser utilizado como uma variável explicativa complementar, mas não suficiente, para explicar a dinâmica do consumo no curto prazo. Assim, para fins de previsão e tomada de decisão, a modelagem da Taxa de Consumo deve priorizar sua própria estrutura temporal.</p>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="Projeto_files/figure-html/unnamed-chunk-7-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="960"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>O gráfico acima evidencia a presença de sazonalidade mensal bem definida na Taxa de Consumo em todos os anos analisados, com valores negativos recorrentes em janeiro, recuperação a partir de fevereiro, picos em março e um crescimento mais acentuado no último trimestre, especialmente em dezembro. Quanto à tendência, não se identifica um movimento crescente ou decrescente consistente no período analisado, indicando que o comportamento da série é predominantemente influenciado pela sazonalidade.</p>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="Projeto_files/figure-html/unnamed-chunk-8-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="960"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Os subgráficos sazonais permitem uma leitura mais detalhada do comportamento do consumo ao longo do ano, ao comparar diretamente os mesmos meses em anos distintos. Observa-se que janeiro concentra sistematicamente os menores valores da série, evidenciando um ajuste negativo recorrente no início do ano, enquanto dezembro se destaca como o mês de maior expansão do consumo. Em meses como março, julho e outubro, predominam variações positivas, embora com intensidades distintas entre os anos, ao passo que os meses intermediários apresentam flutuações mais contidas e próximas da média geral. A consistência desses padrões entre os subgráficos reforça que as oscilações observadas não são aleatórias, mas refletem um comportamento sazonal estruturado, o que respalda a adoção de modelos que incorporem explicitamente a sazonalidade para descrever e prever a dinâmica do consumo das famílias.</p>
+<p>A decomposição aditiva é indicada quando a amplitude da sazonalidade permanece aproximadamente constante, o que já foi observado na série.</p>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="Projeto_files/figure-html/unnamed-chunk-9-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="960"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Do ponto de vista estatístico, a decomposição clássica aditiva da Taxa de Variação Real do Consumo dos Lares evidencia de forma clara a estrutura subjacente da série temporal, ao separar o comportamento observado nos componentes tendência, sazonalidade e ruído (componente aleatório). A tendência mostra movimentos de médio prazo, com crescimento inicial, desaceleração em 2023 e recuperação gradual a partir de 2024, sem um comportamento monotônico persistente ao longo de todo o período. A sazonalidade é estável e recorrente. Por fim, o componente aleatório (residual) concentra variações de curta duração, sem padrão sistemático identificável, oscilando em torno de zero. A ausência de estrutura visível nesse componente sugere que a maior parte da variabilidade da série foi adequadamente capturada pelos componentes de tendência e sazonalidade. Em termos estatísticos, isso indica um bom ajuste da decomposição aditiva e reforça que o comportamento do consumo é predominantemente explicado por fatores sazonais.</p>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="Projeto_files/figure-html/unnamed-chunk-10-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="960"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Analisando a decomposição clássica multiplicativa, vemos que a tendência revela movimentos de médio prazo semelhantes aos observados na decomposição aditiva, o componente sazonal apresenta padrão mensal recorrente e estável, e o componente aleatório concentra oscilações irregulares em torno da unidade, sem estrutura sistemática. A similaridade entre os resultados obtidos nas decomposições multiplicativa e aditiva sugere que, embora a sazonalidade seja relevante, sua intensidade não depende fortemente do nível da série.</p>
+<p>Em séries onde a sazonalidade é proporcional ao nível, ou seja, quanto maior o consumo, maior a oscilação sazonal, espera-se que a decomposição multiplicativa apresente resultados substancialmente diferentes da aditiva. No entanto, neste caso, a proximidade entre os componentes sazonais obtidos nos dois modelos sugere que as variações sazonais não se intensificam de forma significativa quando o consumo aumenta, nem se reduzem proporcionalmente quando ele diminui. Assim, a sazonalidade atua como um efeito estrutural relativamente estável, reforçando que modelos aditivos e métodos de suavização exponencial com sazonalidade aditiva, são adequados para representar e prever o comportamento da série.</p>
+<p>Considerando as características identificadas nas análises anteriores, foram avaliados modelos de Suavização Exponencial.</p>
+<p>Para avaliar o desempenho dos modelos de previsão e identificar a abordagem mais adequada, a série temporal foi particionada em dois subconjuntos: amostra de treinamento e amostra de teste. A amostra de treinamento compreende as observações até dezembro de 2024, enquanto a amostra de teste é formada pelos 12 meses subsequentes, utilizados exclusivamente para validação preditiva dos modelos ajustados.</p>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code># A mable: 1 x 2
+   ETS_Aditivo ETS_Multiplicativo
+       &lt;model&gt;            &lt;model&gt;
+1 &lt;ETS(A,A,A)&gt;       &lt;ETS(M,A,M)&gt;</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 2 × 10
+  .model             .type     ME   RMSE   MAE   MPE  MAPE  MASE RMSSE    ACF1
+  &lt;chr&gt;              &lt;chr&gt;  &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;   &lt;dbl&gt;
+1 ETS_Aditivo        Test    3.03   4.11  3.17  95.9  145.   NaN   NaN -0.396 
+2 ETS_Multiplicativo Test  -64.3  168.   64.3   35.6  902.   NaN   NaN -0.0142</code></pre>
+</div>
+</div>
+<p>A comparação entre os modelos ETS aditivo e ETS multiplicativo evidencia diferenças claras de desempenho preditivo. O modelo ETS aditivo (ETS(A,A,A)) apresenta erros mais controlados, com ME de 3,03, indicando leve superestimação, e valores moderados de RMSE (4,11) e MAE (3,17), o que sugere um bom ajuste à dinâmica da série, apesar dos elevados erros percentuais (MAPE de 145,33%), explicáveis pela presença de valores próximos de zero e oscilações acentuadas. Em contraste, o ETS multiplicativo (ETS(M,A,M)) demonstra desempenho substancialmente inferior, com forte viés de subestimação (ME de −64,28), erros absolutos e quadráticos extremamente elevados (RMSE de 168,01 e MAE de 64,28) e um MAPE de 902,17%, indicando incapacidade de capturar adequadamente o comportamento da série. Esses resultados sugerem que a sazonalidade não varia proporcionalmente ao nível da série, violando o pressuposto central do modelo multiplicativo, o que reforça a superioridade estatística do modelo ETS aditivo para fins de previsão neste estudo.</p>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="Projeto_files/figure-html/unnamed-chunk-13-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="960"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>O gráfico de previsão obtido pelo modelo aditivo indica que a série apresenta elevada volatilidade, com oscilações abruptas entre valores negativos e positivos ao longo do período observado. A linha preta representa os valores reais observados da taxa de variação do consumo, enquanto a azul indica o valor médio previsto pelo modelo. A faixa azul escura indica onde o modelo espera que o valor real caia com 80% de probabilidade, e a faixa mais clara representa o intervalo de maior incerteza.</p>
+<p>Os intervalos de confiança de 80% e 95% revelam que a incerteza é relativamente menor no curto prazo, mas aumenta progressivamente à medida que o horizonte de previsão se estende, refletindo a variabilidade histórica da série e a possibilidade de novos choques. Assim, embora o modelo capture adequadamente a dinâmica de curto prazo e a tendência média de recuperação, as previsões de médio e longo prazo devem ser interpretadas com cautela devido à ampliação da variância do erro.</p>
+<p>Observando agora um modelo sem tendência:</p>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code># A mable: 1 x 2
+   ETS_Aditivo ETS_Multiplicativo
+       &lt;model&gt;            &lt;model&gt;
+1 &lt;ETS(A,N,A)&gt;       &lt;ETS(M,N,M)&gt;</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 2 × 10
+  .model             .type     ME   RMSE   MAE    MPE   MAPE  MASE RMSSE   ACF1
+  &lt;chr&gt;              &lt;chr&gt;  &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt;
+1 ETS_Aditivo        Test   0.556   3.01  2.23   42.6   79.5   NaN   NaN -0.252
+2 ETS_Multiplicativo Test  56.1   162.   57.5  -923.  1242.    NaN   NaN -0.124</code></pre>
+</div>
+</div>
+<p>Focando no modelo sem tendência, o ETS aditivo ainda mantém desempenho aceitável, com erros moderados e estabilidade maior que o multiplicativo, sugerindo que a série possui forte componente sazonal, mas a tendência contribui para melhorar a qualidade do ajuste. A retirada da tendência implica assumir que o nível médio da série é constante ao longo do tempo, o que pode não ser totalmente verdadeiro, já que a decomposição anterior indicava movimentos de médio prazo. Assim, o modelo sem tendência pode ser útil para análises mais simplificadas ou séries estacionárias, mas para fins preditivos ele tende a ser menos robusto do que a versão que incorpora tendência.</p>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="Projeto_files/figure-html/unnamed-chunk-16-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="960"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Os intervalos de confiança são semelhantes em amplitude nos dois casos, o que indica incerteza comparável, porém, a principal diferença está na interpretação econômica: enquanto o modelo com tendência sugere continuidade de um movimento estrutural, o modelo sem tendência assume que o consumo oscila em torno de um nível médio constante.</p>
+<p>Após a validação dos modelos de suavização exponencial e a seleção da especificação mais adequada, foi realizado o ajuste final utilizando toda a série histórica disponível. Essa abordagem permite gerar previsões mais robustas, uma vez que incorpora todas as informações observadas ao longo do período analisado. A partir desse ajuste, foram estimados os valores esperados para os 12 meses subsequentes, com o objetivo de identificar o comportamento provável da Taxa de Variação Real do Consumo dos Lares no curto prazo, bem como avaliar o grau de incerteza associado às projeções.</p>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="Projeto_files/figure-html/unnamed-chunk-17-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="960"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>O gráfico de previsão indica que a série deve manter um comportamento predominantemente sazonal nos próximos 12 meses, com oscilações entre períodos de retração e expansão do consumo. Observa-se inicialmente uma queda acentuada no início do horizonte de previsão, coerente com o padrão histórico de retração observado nos meses iniciais do ano, especialmente em janeiro.</p>
+<p>Na sequência, a trajetória prevista indica uma recuperação gradual ao longo dos meses intermediários, com valores próximos de zero e variações moderadas, refletindo um período de maior estabilidade relativa no consumo das famílias. À medida que o horizonte avança, nota-se uma tendência de aceleração do consumo, culminando em valores positivos mais elevados no final do período projetado, o que está alinhado com o comportamento sazonal típico observado historicamente, marcado pelo aumento do consumo no último trimestre do ano.</p>
+<p>Os intervalos de confiança de 80% e 95% mostram que a incerteza associada às previsões cresce progressivamente ao longo do horizonte temporal, evidenciando a maior variabilidade esperada em previsões de médio prazo. Ainda assim, a manutenção do padrão sazonal dentro desses intervalos sugere que a dinâmica histórica da série continua sendo o principal determinante das projeções futuras.</p>
+</section>
+<section id="conclusão" class="level2" data-number="6">
+<h2 data-number="6" class="anchored" data-anchor-id="conclusão"><span class="header-section-number">6</span> Conclusão</h2>
+<p>Os resultados obtidos estão diretamente alinhados ao tema do estudo, que busca compreender e antecipar o comportamento da Taxa de Variação Real do Consumo dos Lares como um indicador relevante da dinâmica econômica. A identificação de forte sazonalidade anual e elevada volatilidade mensal evidencia que o consumo das famílias responde de forma sensível a fatores recorrentes do calendário econômico, como períodos de maior gasto no fim do ano e retrações no início, além de choques conjunturais de curto prazo. Nesse contexto, a decomposição da série e o melhor desempenho do modelo ETS aditivo demonstram que técnicas de séries temporais são adequadas para capturar esses padrões e gerar previsões mais consistentes, contribuindo para o planejamento econômico e para a tomada de decisão estratégica em setores dependentes do nível de consumo.</p>
+</section>
+
+</main>
+<!-- /main column -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+
+
+
+
+<script src="Projeto_files/libs/quarto-html/zenscroll-min.js"></script>
+</body></html>
