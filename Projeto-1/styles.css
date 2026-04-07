@@ -1,0 +1,27 @@
+/* Justificar texto do relatório */
+p {
+  text-align: justify;
+}
+
+/* Ajuste de margens do conteúdo */
+main {
+  margin-left: 40px;
+  margin-right: 40px;
+}
+
+/* Melhor leitura em telas grandes */
+body {
+  line-height: 1.6;
+  font-family: "Times New Roman", serif;
+}
+
+/* Títulos com espaçamento adequado */
+h1, h2, h3 {
+  margin-top: 1.5em;
+  margin-bottom: 0.5em;
+}
+
+/* Ajuste para listas */
+ul, ol {
+  text-align: justify;
+}
