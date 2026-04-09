@@ -85,7 +85,7 @@ dados <- read_delim(
 
 #Carregando a base de dados do IPCA e separando as colunas pelo delimitador ";"
 dados.2 <- read_delim(
-  "https://raw.githubusercontent.com/lorennadiniz/Series-Temporais/refs/heads/main/ipeadata-IPCA(alimentos%20e%20bebidas%2021-25).csv",
+  "https://raw.githubusercontent.com/lorennadiniz/Series-Temporais/refs/heads/Projeto-2/Projeto-1/ipeadata-IPCA(alimentos%20e%20bebidas%2021-25).csv",
   delim = ";",
   locale = locale(decimal_mark = ",")
 )
