@@ -78,7 +78,7 @@ library(lubridate)
 
 #Carregando a base de dados e separando as colunas pelo delimitador ";"
 dados <- read_delim(
-  "https://raw.githubusercontent.com/lorennadiniz/Series-Temporais/refs/heads/main/ipeadata%5B05-02-2026-08-19%5D.csv",
+  "https://raw.githubusercontent.com/lorennadiniz/Series-Temporais/refs/heads/Projeto-2/Projeto-2/ipeadata%5B05-02-2026-08-19%5D.csv",
   delim = ";",
   locale = locale(decimal_mark = ",")
 )
